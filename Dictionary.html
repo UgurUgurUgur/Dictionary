@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+        <div class="container">
+          <h1 class="center">Dictionary</h1>
+          <!-- <input id="word" type="text" class="form-control mb-2">
+          <button id="buttonword" class="btn btn-primary" onclick="getWord()">Get description</button>
+          <hr> -->
+          <div class="input-group mb-3">
+            <input id="word" type="text" class="form-control" placeholder="Type your word here" aria-label="word" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="buttonword" onclick="getWord()">Search</button>
+          </div>
+
+          <article class="episode">
+            <div class="episode__number">Part of speech</div>
+            <div class="episode__content">
+              <div class="title" id="list2"></div>
+            </div>
+          </article>
+
+          <article class="episode">
+            <div class="episode__number">Phonetics</div>
+            <div class="episode__content">
+              <div class="title" id="list1"></div>
+            </div>
+          </article>
+          
+          
+</body>
+<script>
+    
+    const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
+   
+
+    const getWord = () => {
+        // Chech if word is found
+        let wordValue = document.getElementById('word').value;
+
+        // When word is not found
+        console.log(wordValue);
+        fetch(url + wordValue).then(res => res.json()).then(
+            data => {
+                if (data[0] == undefined) {
+                    document.getElementById('list1').innerHTML = `
+                    <h5 class="card-title">No result</h5>
+                    `;
+                    return;
+                }
+        // When word is found
+                let phoneticsResult;
+                let i = 0;
+                while(i < data[0].phonetics.length) {
+                    if (data[0].phonetics[i].text != undefined) {
+                        phoneticsResult = data[0].phonetics[i].text;
+                    }
+                    i++;
+                }
+                document.getElementById('list1').innerHTML = `
+                    ${phoneticsResult}
+                    `;
+
+                let definitionResult;
+                i = 0;
+                let j = 0;
+                document.getElementById('list2').innerHTML = `<ul>`;
+                while (i < data[0].meanings.length) {
+                    if (data[0].meanings[i].partOfSpeech != undefined) {
+                        document.getElementById('list2').innerHTML += `
+                        <h5><u>${data[0].meanings[i].partOfSpeech}</u></h5>
+                        <h6>Definition:</h6>
+                        
+                        `;
+                        j = 0
+                        while (j < data[0].meanings[i].definitions.length) {
+                            document.getElementById('list2').innerHTML += `
+                             <li> ${data[0].meanings[i].definitions[j].definition} </li>
+                            `;
+                            j++;
+                        }
+                        
+                    }
+                    i++;
+
+                } 
+                document.getElementById('list2').innerHTML += `</ul>`;
+                }
+        ).catch(error => console.log(error));
+    }
+    
+</script>
+</html>
