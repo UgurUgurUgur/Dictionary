@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocorrect</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">Autocorrect</h1>
+    </div>
+   <div class="centered-div">
+    <div class="inner-div">
+        <h1>Put your text here</h1>
+        <input type="text" class="input">
+        <button onclick="submit()" class="btn btn-primary vibes">Submit</button>
+    </div>
+    <div class="inner-div">
+        <h1>Review the changes here</h1>
+        <input type="text" class="output">
+    </div>
+   </div>
+      <script>
+            let url = 'https://serpapi.com/search.json?q=' + submit + '=en&gl=us'
+            function submit() {
+                fetch (url).then(res => res.json()).then(
+                data => {
+                    function submit() {
+                        document.getElementById('Autocorrect').innerHTML += data.result
+                    }
+                    const obj = JSON.parse(data);
+                    const result = obj.search_information.spelling_fix 
+                    console.log(result);
+                }      
+                
+                
+                
+                ).catch(error => console.log(error))
+
+            
+            }
+
+            
+        </script>
+</body>
+</html>
