@@ -7,6 +7,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="Style.css">
+    <style>
+        body {
+            background-image: url(Images/Background.jpg);
+            background-position: top left;
+            background-size: 100vw;
+            background-repeat: no-repeat;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+        .container {
+            background-color: #6c5a49c0;
+        }
+    </style>
 </head>
 <body>
         <div class="container">
@@ -31,9 +45,7 @@
             <div class="episode__content">
               <div class="title" id="list1"></div>
             </div>
-          </article>
-          
-          
+          </article>  
 </body>
 <script>
     
@@ -46,6 +58,8 @@
 
         // When word is not found
         console.log(wordValue);
+
+
         fetch(url + wordValue).then(res => res.json()).then(
             data => {
                 if (data[0] == undefined) {

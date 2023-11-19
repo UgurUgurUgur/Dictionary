@@ -7,7 +7,22 @@
     <title>Synonyms</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!--   <link rel="stylesheet" href="Style.css"> -->
+        <style>
+            body {
+                background-image: url(Images/Background.jpg);
+                background-position: top left;
+                background-size: 100vw;
+                background-repeat: no-repeat;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+                margin: O;
+            }
+            .container {
+                background-color: #6c5a49c0;
+            }
+
+        </style>
+
 </head>
 
 <body>
@@ -25,7 +40,7 @@
                 <div class="title" id="list"></div>
             </div>
         </article>
-
+<br>
 </body>
 
 
@@ -44,28 +59,23 @@
                 // When word is not found
                 if (data.title == 'No Definitions Found') {
                     document.getElementById('list').innerHTML = `
-                    <h5 class="card-title">No result</h5>
-                    `;
+                        <h5 class="card-title">No result</h5>
+                        `;
                     return;
                 }
-                // When synonyms are not found
-                /*    let i = 0
-                   if (data[0].meanings[i].synonyms.length == undefined) {
-                       document.getElementById('list').innerHTML = `
-                       <h5 class="card-title">No result</h5>
-                       `;
-                   } */
-
+                
                 // When word is found
                 let synonymResult;
                 i = 0;
+                let j = 0
                 document.getElementById('list').innerHTML = `<ul>`;
-                while (i < data[0].meanings[i].synonyms.length) {
-                    if (data[0].meanings[i].synonyms != undefined) {
-                        synonymResult = data[0].meanings[i].synonyms;
+                while (i < data[0].meanings.length) {
+                    while (j < data[0].meanings[i].synonyms.length) {
+                        synonymResult = data[0].meanings[i].synonyms[j];
                         document.getElementById('list').innerHTML += `
-                        <li>${synonymResult}</li>
-                    `;
+                            <li>${synonymResult}</li>
+                        `;
+                        j++;
                     }
                     i++;
                 }
