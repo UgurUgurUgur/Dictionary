@@ -13,9 +13,10 @@
 <body class="quotesBG">
 
     <div id="navbar">
-        <a href="#default" id="logo"><img class="logoimg" src="https://static.thenounproject.com/png/3542-200.png"></a>
+        <a href="homepage.html" id="logo"><img class="logoimg"
+                src="https://static.thenounproject.com/png/3542-200.png"></a>
         <div id="navbar-right">
-            <a href="#aboutus">Home</a>
+            <a href="homepage.html">Home</a>
             <a href="dictionary.html">Dictionary</a>
             <a href="synonyms.html">Synonyms</a>
             <a class="active" href="quotes.html">Quotes</a>
@@ -55,7 +56,7 @@
     </div>
 
     <footer class="footer" id="footer">
-        <p>&copy; WordIt</p>
+        <p id="year">year&copy; WordIt</p>
     </footer>
 
     <script>
@@ -79,12 +80,19 @@
                 // User is near the bottom
                 footer.style.padding = "20px";
                 footer.style.backgroundColor = "rgba(245, 222, 179, 0.486)";
-                footer.style.color = "#d18800"; 
+                footer.style.color = "#d18800";
             } else {
                 // User is not near the bottom
                 footer.style.padding = "10px";
                 footer.style.backgroundColor = "rgba(245, 222, 179, 0)";
-                footer.style.color = "rgba(0, 0, 0, 0)"; 
+                footer.style.color = "rgba(0, 0, 0, 0)";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var yearElement = document.getElementById("year");
+            if (yearElement) {
+                yearElement.textContent = "" + new Date().getFullYear() + " \u00A9 WordIt";
             }
         });
 
