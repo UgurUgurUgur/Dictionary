@@ -10,79 +10,86 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
 
-<body class="quotesBG" class="quotesBG1">
+<body class="quotesBG">
 
     <div id="navbar">
         <a href="#default" id="logo"><img class="logoimg" src="https://static.thenounproject.com/png/3542-200.png"></a>
         <div id="navbar-right">
             <a href="#aboutus">Home</a>
+            <a href="dictionary.html">Dictionary</a>
             <a href="synonyms.html">Synonyms</a>
             <a class="active" href="quotes.html">Quotes</a>
             <a href="rhymes.html">Rhymes</a>
         </div>
     </div>
 
-
     <div class="container">
-        <h1 class="quotes-header1">Quotes</h1>
-
-        <button id="generateQuoteButton" class="btn btn-primary">Generate Quote</button>
-
-        <div id="quoteDisplay"></div>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-        <p>tekst</p>
-
+        <div class="row">
+            <div class="col-md-2">
+                <img src="media/QuoteBottom.png" alt="Quote Top Image" class="TopImg">
+            </div>
+            <div class="col-md-8">
+                <div class="quote-container">
+                    <h1 class="quotes-header1">Quotes</h1>
+                    <button id="generateQuoteButton" class="btn btn-primary btnGenerate">Generate Quote</button>
+                    <div id="quoteDisplay"></div>
+                    <button id="historyButton" class="btn btn-secondary mt-3 text-center"
+                        onclick="scrollToHistory()">Jump to the history of quotes</button>
+                </div>
+                <div class="quote-container2" id="history-container">
+                    <h1 class="quotes-header1">History</h1>
+                    <p class="qHistory">Quotes, like cherished artifacts, trace an illustrious journey through the
+                        corridors of human history. From ancient oral traditions to the Renaissance printing press, they
+                        evolved, carrying profound wisdom and shaping cultural narratives. Thinkers like Voltaire left
+                        an indelible mark, and quotes became potent heralds of change in revolutions and epochs.</p>
+                    <p class="qHistory">In the digital age, these gems seamlessly tran-sitioned to pixels, finding a
+                        vibrant home on social media. From religious scriptures to silver screen lines, quotes persist
+                        as cultural currency, weaving a narrative that transcends time. They remain eloquent markers of
+                        our shared humanity, bridging centuries and etching the collective wisdom of our journey.</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <img src="media/QuoteTop.png" alt="Quote Bottom Image" class="BottomImg">
+            </div>
+        </div>
     </div>
 
+    <footer class="footer" id="footer">
+        <p>&copy; WordIt</p>
+    </footer>
+
     <script>
+        // scroll to history
+        function scrollToHistory() {
+            document.getElementById('history-container').scrollIntoView();
+        }
+
+        // footer
+        const footer = document.querySelector(".footer");
+        const windowHeight = window.innerHeight;
+        footer.style.padding = "10px";
+        footer.style.backgroundColor = "rgba(245, 222, 179, 0)";
+        footer.style.color = "rgba(0, 0, 0, 0)";
+        // When the user scrolls, check if they are near the bottom of the page
+        window.addEventListener("scroll", function () {
+            const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+            const documentHeight = document.body.clientHeight;
+
+            if (scrollPosition + windowHeight >= documentHeight - 10) {
+                // User is near the bottom
+                footer.style.padding = "20px";
+                footer.style.backgroundColor = "rgba(245, 222, 179, 0.486)";
+                footer.style.color = "#d18800"; 
+            } else {
+                // User is not near the bottom
+                footer.style.padding = "10px";
+                footer.style.backgroundColor = "rgba(245, 222, 179, 0)";
+                footer.style.color = "rgba(0, 0, 0, 0)"; 
+            }
+        });
+
         // navbar
+        document.getElementById("navbar").style.backgroundColor = "rgba(209, 136, 0, 0)";
         // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
         window.onscroll = function () {
             scrollFunction()
@@ -91,16 +98,14 @@
         function scrollFunction() {
             if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
                 document.getElementById("navbar").style.padding = "30px 10px";
-                document.getElementById("navbar").style.backgroundColor = "lightgray";
+                document.getElementById("navbar").style.backgroundColor = "#d18800";
                 document.getElementById("logo").style.fontSize = "25px";
             } else {
                 document.getElementById("navbar").style.padding = "80px 10px";
                 document.getElementById("logo").style.fontSize = "35px";
-                document.getElementById("navbar").style.backgroundColor = "rgba(211, 211, 211, 0)";
+                document.getElementById("navbar").style.backgroundColor = "rgba(209, 136, 0, 0)";
             }
         }
-
-        // Nav
 
         // Qoute Generator
         const apiKey = "Qe5eP9DJqYNtc9ijojcW6g==9FQ5aWiA3MTU89Nd";
