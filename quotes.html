@@ -34,6 +34,8 @@
                     <h1 class="quotes-header1">Quotes</h1>
                     <button id="generateQuoteButton" class="btn btn-primary btnGenerate">Generate Quote</button>
                     <div id="quoteDisplay"></div>
+                    <button id="saveFavoriteButton" class="btn btn-success mt-3" onclick="saveFavorite()" style="background-color: rgba(197, 57, 33, 0.7); border-color: transparent;">Save as Favorite</button>
+                    <button id="showFavoritesButton" class="btn btn-info mt-3" onclick="showFavorites()" style="background-color: rgba(73, 153, 73, 0.7); border-color: transparent;">Show Favorites</button>
                     <button id="historyButton" class="btn btn-secondary mt-3 text-center"
                         onclick="scrollToHistory()">Jump to the history of quotes</button>
                 </div>
@@ -79,7 +81,7 @@
             if (scrollPosition + windowHeight >= documentHeight - 10) {
                 // User is near the bottom
                 footer.style.padding = "20px";
-                footer.style.backgroundColor = "rgba(245, 222, 179, 0.486)";
+                footer.style.backgroundColor = "rgba(245, 222, 179, 0.85)";
                 footer.style.color = "#d18800";
             } else {
                 // User is not near the bottom
@@ -143,6 +145,41 @@
                 console.error("Error fetching data:", error);
             }
         });
+        // Function to save the current quote as a favorite
+        function saveFavorite() {
+            const currentQuote = quoteDisplay.textContent;
+
+            // Check if the quote is not empty before saving
+            if (currentQuote.trim() !== "") {
+                // Get the existing favorites from localStorage or initialize an empty array
+                const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+                // Check if the quote is not already in the favorites
+                if (!favorites.includes(currentQuote)) {
+                    // Add the current quote to the favorites array
+                    favorites.push(currentQuote);
+
+                    // Save the updated favorites array to localStorage
+                    localStorage.setItem("favorites", JSON.stringify(favorites));
+                    alert("Quote added to favorites!");
+                } else {
+                    alert("Quote is already in favorites!");
+                }
+            } else {
+                alert("No quote to save!");
+            }
+        }
+
+        // Function to display saved favorites
+        function showFavorites() {
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+            if (favorites.length > 0) {
+                alert("Favorite Quotes:\n\n" + favorites.join("\n"));
+            } else {
+                alert("No favorite quotes saved!");
+            }
+        }
 
     </script>
 

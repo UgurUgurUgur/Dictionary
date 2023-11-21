@@ -258,11 +258,6 @@ body {
     text-align: center;
     position: fixed;
 }
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 .center { text-align: center; }
 
