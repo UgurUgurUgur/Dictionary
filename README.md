@@ -48,3 +48,5 @@ We welcome contributions from the community! If you'd like to contribute to Word
 ## License
 
 WordIt is open sourced and free to use for personal projects as long as we're credited somewhere in the application.
+
+![WordIt.](media/WordIt.png)
